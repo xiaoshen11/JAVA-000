@@ -1,11 +1,8 @@
-学习笔记
+package io.github.bruce.gateway.filter;
 
-作业1：整合上次作业的 httpclient/okhttp；
-HttpOutboundHandler
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.http.FullHttpRequest;
 
-作业3：实现过滤器
-
-```java
 public class HttpHeadersFilter implements HttpRequestFilter{
 
     @Override
@@ -13,7 +10,3 @@ public class HttpHeadersFilter implements HttpRequestFilter{
         fullRequest.headers().add("nio","bruce");
     }
 }
-```
-
-
-
