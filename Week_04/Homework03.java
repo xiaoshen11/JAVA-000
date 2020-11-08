@@ -1,6 +1,3 @@
-# **周四作业**
-
-```java
 package java0.conc0303;
 
 import java.util.Random;
@@ -72,13 +69,3 @@ public class Homework03 {
         return fibo(a-1) + fibo(a-2);
     }
 }
-
-```
-
-
-
-# **周六作业**
-
-
-![1604850413(1)](1604850413(1).png)
-
