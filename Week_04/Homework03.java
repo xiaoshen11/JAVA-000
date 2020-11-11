@@ -11,9 +11,9 @@ import java.util.concurrent.*;
  * 一个简单的代码参考：
  */
 public class Homework03 {
-    
-    public static void main(String[] args) {
-        
+
+    public static void main(String[] args) throws Exception {
+
         long start=System.currentTimeMillis();
         //方法一
         ExecutorService executor = Executors.newCachedThreadPool();
@@ -24,7 +24,7 @@ public class Homework03 {
         });
         // 在这里创建一个线程或线程池，
         // 异步执行 下面方法
-        
+
 //        int result = sum(); //这是得到的返回值
         executor.shutdown();
         // 确保  拿到result 并输出
@@ -37,7 +37,7 @@ public class Homework03 {
         }
 
         System.out.println("使用时间："+ (System.currentTimeMillis()-start) + " ms");
-        
+
         // 然后退出main线程
 
         //方法二
@@ -56,15 +56,63 @@ public class Homework03 {
             e.printStackTrace();
         }
 
+        //方法三
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int result = sum();
+                System.out.println("result: " + result);
+                countDownLatch.countDown();
+            }
+        }).start();
+        countDownLatch.await();
+        System.out.println("方法三==>主线程执行结束。。。。");
+
+        //方法四
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(1, new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("方法四==>主线程执行结束。。。。");
+            }
+        });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int result = sum();
+                System.out.println("result: " + result);
+                try {
+                    cyclicBarrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        //方法五
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int result = sum();
+                System.out.println("方法五-result: " + result);
+            }
+        });
+        t1.start();
+        t1.join();
+        System.out.println("方法五==>主线程执行结束。。。。");
+
+
 
     }
-    
+
     private static int sum() {
         return fibo(36);
     }
-    
+
     private static int fibo(int a) {
-        if ( a < 2) 
+        if ( a < 2)
             return 1;
         return fibo(a-1) + fibo(a-2);
     }
