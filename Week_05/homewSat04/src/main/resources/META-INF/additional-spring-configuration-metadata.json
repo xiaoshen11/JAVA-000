@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "school.studentIds",
+      "type": "java.lang.String",
+      "description": "Description for school.studentIds.",
+      "defaultValue": "1,2"
+    },
+    {
+      "name": "school.studentNames",
+      "type": "java.lang.String",
+      "description": "Description for school.studentNames.",
+      "defaultValue": "student1,student2"
+    },
+    {
+      "name": "school.student100Id",
+      "type": "java.lang.String",
+      "description": "Description for school.student100Id.",
+      "defaultValue": "101"
+    },
+    {
+      "name": "school.student100Name",
+      "type": "java.lang.String",
+      "description": "Description for school.student100Name.",
+      "defaultValue": "bruce"
+    }
+  ]
+}
