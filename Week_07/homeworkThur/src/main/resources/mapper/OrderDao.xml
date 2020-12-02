@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bruce.mysql.mapper.OrderDao">
+  <resultMap id="BaseResultMap" type="com.bruce.mysql.model.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="total_amount" jdbcType="DOUBLE" property="totalAmount" />
+    <result column="discount_amount" jdbcType="DOUBLE" property="discountAmount" />
+    <result column="actual_amount" jdbcType="DOUBLE" property="actualAmount" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="create_date" jdbcType="BIGINT" property="createDate" />
+    <result column="update_date" jdbcType="BIGINT" property="updateDate" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="del_flag" jdbcType="BIT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, total_amount, discount_amount, actual_amount, order_status, create_date, 
+    update_date, create_by, update_by, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bruce.mysql.model.Order" useGeneratedKeys="true">
+    insert into t_order (user_id, total_amount, discount_amount,
+      actual_amount, order_status, create_date, 
+      update_date, create_by, update_by, 
+      del_flag)
+    values (#{userId,jdbcType=BIGINT}, #{totalAmount,jdbcType=DOUBLE}, #{discountAmount,jdbcType=DOUBLE}, 
+      #{actualAmount,jdbcType=DOUBLE}, #{orderStatus,jdbcType=INTEGER}, #{createDate,jdbcType=BIGINT}, 
+      #{updateDate,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=BIT})
+  </insert>
+
+  <insert id="batchInsert">
+    insert into t_order (user_id, total_amount, discount_amount,
+      actual_amount, order_status, create_date,
+      update_date, create_by, update_by,
+      del_flag)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      ( #{item.userId},#{item.totalAmount},#{item.discountAmount},#{item.actualAmount},
+      #{item.orderStatus}, #{item.createDate}, #{item.updateDate}, #{item.createBy}, #{item.updateBy},
+      #{item.delFlag})
+    </foreach>
+  </insert>
+
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bruce.mysql.model.Order" useGeneratedKeys="true">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="discountAmount != null">
+        discount_amount,
+      </if>
+      <if test="actualAmount != null">
+        actual_amount,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null">
+        #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="actualAmount != null">
+        #{actualAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bruce.mysql.model.Order">
+    update t_order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null">
+        discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="actualAmount != null">
+        actual_amount = #{actualAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bruce.mysql.model.Order">
+    update t_order
+    set user_id = #{userId,jdbcType=BIGINT},
+      total_amount = #{totalAmount,jdbcType=DOUBLE},
+      discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      actual_amount = #{actualAmount,jdbcType=DOUBLE},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
