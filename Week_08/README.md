@@ -17,38 +17,7 @@
 
 ### **2.（必做）**设计对前面的订单表数据进行水平分库分表，拆分 2 个库，每个库 16 张表。并在新结构在演示常见的增删改查操作。代码、sql 和配置文件，上传到 Github。
 
-```
-
-```
-
-
-
-### 一条一条插入
-
-```
-public int batchAdd() {
-        Long m = System.currentTimeMillis();
-        int result = 0;
-        for (int i = 0; i < 1000000; i++) {
-            Order order = new Order();
-            order.setUserId(Long.valueOf(i));
-            order.setActualAmount(Double.valueOf(i));
-            order.setTotalAmount(Double.valueOf(i));
-            order.setDiscountAmount(Double.valueOf(i));
-            order.setOrderStatus(i/4);
-            order.setCreateDate(m);
-            order.setCreateBy(Long.valueOf(i));
-            order.setDelFlag(false);
-            result += orderDao.insert(order);
-        }
-        Long end = System.currentTimeMillis();
-        log.info("单条插入数据，花费时间为" + (end - m));
-        return result;
-    }
-   执行结果为： 20分钟才跑了1w2的数据。
-```
-
-
+https://github.com/xiaoshen11/JAVA-000/tree/main/Week_08/0804
 
 
 
@@ -85,6 +54,6 @@ public int batchAdd() {
 ## 2.（必做）基于 hmily TCC 或 ShardingSphere 的 Atomikos XA 实现一个简单的分布式事务应用 demo（二选一），提交到 Github。
 
 ```
-
+https://github.com/xiaoshen11/JAVA-000/tree/main/Week_08/XA
 ```
 
