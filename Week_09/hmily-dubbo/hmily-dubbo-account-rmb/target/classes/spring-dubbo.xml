@@ -7,7 +7,7 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="dollar_account"/>
+    <dubbo:application name="rmb_account"/>
 
     <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 
@@ -16,7 +16,11 @@
                     charset="UTF-8" threadpool="fixed" threads="500"
                     queues="0" buffer="8192" accepts="0" payload="8388608" />
 
-    <dubbo:service interface="com.bruce.dubbo.common.dollar.api.DollarAccountService"
-                   ref="dollarAccountService" executes="20"/>
+<!--    <dubbo:service interface="com.bruce.dubbo.common.rmb.api.RMBAccountService"-->
+<!--                   ref="rmbAccountService" executes="20"/>-->
 
+    <dubbo:reference timeout="20000"
+                     interface="com.bruce.dubbo.common.dollar.api.DollarAccountService"
+                     id="dollarAccountService"
+                     retries="0" check="false" loadbalance="hmilyRandom"/>
 </beans>

@@ -8,9 +8,7 @@
 
 
 
-```
 https://github.com/xiaoshen11/JAVA-000/tree/main/Week_09/rpc01
-```
 
 
 
@@ -23,8 +21,6 @@ https://github.com/xiaoshen11/JAVA-000/tree/main/Week_09/rpc01
 - 用户 B 的美元账户和人民币账户都在 B 库，使用 7 人民币兑换 1 美元 ;
 - 设计账户表，冻结资产表，实现上述两个本地事务的分布式事务。
 
-```
 https://github.com/xiaoshen11/JAVA-000/tree/main/Week_09/hmily-dubbo
 
-```
 

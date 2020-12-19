@@ -1,10 +1,10 @@
 hmily:
   server:
     configMode: local
-    appName: dollaraccount
+    appName: rmbaccount
   #  如果server.configMode eq local 的时候才会读取到这里的配置信息.
   config:
-    appName: dollaraccount
+    appName: rmbaccount
     serializer: kryo
     contextTransmittalMode: threadLocal
     scheduledThreadMax: 16
@@ -74,7 +74,7 @@ repository:
 metrics:
   metricsName: prometheus
   host:
-  port: 9092
+  port: 9091
   async: true
   threadCount : 16
   jmxConfig:
