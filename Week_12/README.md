@@ -1,14 +1,30 @@
 # 作业
 
-**1.（必做）**配置 redis 的主从复制，sentinel 高可用，Cluster 集群。
-
-启了两个docker ，
-
-![image-20210102173755990](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210102173755990.png)
+**1.（必做）**配置 redis 的主从复制，sentinel 高可用，Cluster 集群
 
 #### 主从复制
 
-![image-20210102173832172](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210102173832172.png)
+```
+127.0.0.1:6379> info replication
+# Replication
+role:slave
+master_host:127.0.0.1
+master_port:6381
+master_link_status:up
+master_last_io_seconds_ago:0
+master_sync_in_progress:0
+slave_repl_offset:20949
+slave_priority:100
+slave_read_only:1
+connected_slaves:0
+master_repl_offset:0
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+```
+
+
 
 #### sentinel 高可用
 
