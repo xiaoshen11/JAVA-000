@@ -2,6 +2,8 @@
 
 **1.（必做）**配置 redis 的主从复制，sentinel 高可用，Cluster 集群
 
+详情见博客：https://blog.csdn.net/baidu_27627251/article/details/112143714
+
 #### 主从复制
 
 ```
