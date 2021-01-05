@@ -23,7 +23,7 @@ public class SubscribeOrder {
             public void onMessage(String channel, String message) {
                 if (message.isEmpty()) {
                     System.out.println("SubPub End");
-                    System.exit(0);
+//                    System.exit(0);
                 }
                 System.out.printf("Receive message from %s :: %s\n", channel, message);
             }

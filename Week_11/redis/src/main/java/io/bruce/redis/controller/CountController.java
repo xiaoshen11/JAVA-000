@@ -14,9 +14,14 @@ public class CountController {
     @Autowired
     private RedisCount redisCount;
 
-    @PostMapping("incr")
-    public String incr(@RequestParam("key") String key){
-        redisCount.incr(key);
+    @PostMapping("decr")
+    public String decr(@RequestParam("key") String key){
+        try {
+            redisCount.decr(key);
+        }catch (Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
         return redisCount.get(key);
     }
 
