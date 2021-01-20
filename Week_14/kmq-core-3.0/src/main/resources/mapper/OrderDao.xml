@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.kimmking.kmq.mapper.OrderDao">
+  <resultMap id="BaseResultMap" type="io.kimmking.kmq.entity.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ts" jdbcType="BIGINT" property="ts" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ts, symbol, price, topic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getOrder"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_order
+    where topic = #{topic,jdbcType=BIGINT}
+    and id >= #{offset}
+    limit 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="io.kimmking.kmq.entity.Order" useGeneratedKeys="true">
+    insert into t_order (ts, symbol, price,
+      topic)
+    values (#{ts,jdbcType=BIGINT}, #{symbol,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{topic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="io.kimmking.kmq.entity.Order" useGeneratedKeys="true">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ts != null">
+        #{ts,jdbcType=BIGINT},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="io.kimmking.kmq.entity.Order">
+    update t_order
+    <set>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=BIGINT},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.kimmking.kmq.entity.Order">
+    update t_order
+    set ts = #{ts,jdbcType=BIGINT},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      topic = #{topic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
