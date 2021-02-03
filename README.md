@@ -21,7 +21,7 @@ JVM图形化工具：jconsole、jvisualvm、VisualGC、jmc
 
 JVM问题分析：1.高分配速率 2.过早提升
 
-![image-20210201004142771](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210201004142771.png)
+![image-20210201004142771](README.assets/image-20210201004142771.png)
 
 
 
@@ -39,7 +39,7 @@ Netty的一个NIO网络框架，高性能，低延迟。
 
 Netty基于事件驱动。
 
-![image-20210201230054041](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210201230054041.png)
+![image-20210201230054041](README.assets/image-20210201230054041.png)
 
 
 ## 3) 并发编程
@@ -68,15 +68,23 @@ ConcurrentHashMap 用来替代hashmap，注意1.7和1.8的区别
 
 
 
-![image-20210202002710762](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210202002710762.png)
+![image-20210202002710762](README.assets/image-20210202002710762.png)
 
 ## 4)Spring 和 ORM 等框架
 
+Spring的主要特性就是IOC和AOP。
+
+有了IOC，就不需要每次new对象了，而是把对象的生命周期交给spring去管理，这样也解耦了程序，spring通过三级缓存解决了对象循环依赖的问题，但是构造函数循环依赖无法处理。
+
+spring bean的加载过程，构造函数-》依赖注入-》一些上下文处理-》BeanPostProcessor前置方法-》初始化-》BeanPostProcessor后置方法-》使用-》销毁。
+
+后面由于spring发展的越来越大，为了避免陷入配置地狱，出现了springboot，它的设计思想是约定大于配置，大大减轻了程序员的配置工作。
+
+ORM框架比较出名的有Hibernate/MyBatis，Hibernate使用简单，不懂sql语法也能操作数据库，但是不够直观，对DBA不友好，复杂sql也不好写。MyBatis使用直观，写sql比较自由，对DBA友好。
 
 
 
-
-![image-20210202012425688](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210202012425688.png)
+![image-20210202012425688](README.assets/image-20210202012425688.png)
 
 ## 5)MySQL 数据库和 SQL
 
@@ -106,7 +114,7 @@ InnoDB有undo log和redo log，用来保证数据的一致性。
 
 
 
-![image-20210202215300905](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210202215300905.png)
+![image-20210202215300905](README.assets/image-20210202215300905.png)
 
 ## 6) 分库分表
 
@@ -124,7 +132,7 @@ InnoDB有undo log和redo log，用来保证数据的一致性。
 
 
 
-![image-20210202230557881](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210202230557881.png)
+![image-20210202230557881](README.assets/image-20210202230557881.png)
 
 
 
@@ -144,7 +152,7 @@ Dubbo是比较出名的RPC框架，SPI设计，扩展性强。
 
 
 
-![image-20210203004413053](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210203004413053.png)
+![image-20210203004413053](README.assets/image-20210203004413053.png)
 
 ## 8) 分布式缓存
 
@@ -172,7 +180,7 @@ redis高可用：主从模式、哨兵模式、集群模式。
 
 
 
-![image-20210131144259207](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210131144259207.png)
+![image-20210131144259207](README.assets/image-20210131144259207.png)
 
 
 
@@ -184,7 +192,7 @@ redis高可用：主从模式、哨兵模式、集群模式。
 
 
 
-![image-20210203211735187](C:\Users\34741\AppData\Roaming\Typora\typora-user-images\image-20210203211735187.png)
+![image-20210203211735187](README.assets/image-20210203211735187.png)
 
 
 
